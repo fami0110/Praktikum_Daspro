@@ -15,7 +15,6 @@ public class SwitchCetakKRS14 {
                 break;
             case 2:
                 System.out.println("KRS Semester 2 ditampilkan");
-                break;
             case 3:
                 System.out.println("KRS Semester 3 ditampilkan");
                 break;
