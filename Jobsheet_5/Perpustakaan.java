@@ -11,7 +11,7 @@ public class Perpustakaan {
         System.out.print("Apakah sudah registrasi online? (true/false) ");
         isRegistered = sc.nextBoolean();
 
-        if (kartuMahasiswa && isRegistered) {
+        if (kartuMahasiswa || isRegistered) {
             System.out.println("Silahkan masuk");
         } else {
             System.out.println("Anda dilarang masuk");
