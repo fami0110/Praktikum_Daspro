@@ -89,12 +89,12 @@ public class CM1_14 {
         System.out.println("Nama\t: " + nama);
         System.out.println("NIM\t: " + nim);
         
-        System.out.println("\nMata Kuliah\t\tUTS\tUAS\tTugas\tNilai Akhir\tNilai Huruf\tStatus");
-        System.out.println("---------------------------------------------------------------------------------------");
-        System.out.printf("%s\t%d\t%d\t%d\t%.2f\t\t%s\t\t%s\n", 
+        System.out.printf("\n%-25s %-8s %-8s %-8s %-15s %-15s %s\n", "Mata Kuliah", "UTS", "UAS", "TUGAS", "Nilai Akhir", "Nilai Huruf", "Status");
+        System.out.println("-------------------------------------------------------------------------------------------");
+        System.out.printf("%-25s %-8d %-8d %-8d %-15.2f %-15s %s\n", 
             "Algoritma Pemograman", uts1, uas1, tugas1, nilaiAkhir1, nilaiHuruf1, (nilaiAkhir1 >= 60) ? "LULUS":"TIDAK LULUS");
-        System.out.printf("%s\t%d\t%d\t%d\t%.2f\t\t%s\t\t%s\n", 
-            "Struktur Data\t", uts2, uas2, tugas2, nilaiAkhir2, nilaiHuruf2, (nilaiAkhir1 >= 60) ? "LULUS":"TIDAK LULUS");
+        System.out.printf("%-25s %-8d %-8d %-8d %-15.2f %-15s %s\n", 
+            "Struktur Data", uts2, uas2, tugas2, nilaiAkhir2, nilaiHuruf2, (nilaiAkhir1 >= 60) ? "LULUS":"TIDAK LULUS");
         
         // Hitung Rata-rata Nilai Semester
         rata_rata = (nilaiAkhir1 + nilaiAkhir2) / 2;
