@@ -38,21 +38,21 @@ public class CM1_14 {
     }
 
     public static void main(String[] args) {
-        // Deklarasi Variable
+        // Deklarasi Variabel
         Scanner sc = new Scanner(System.in);
         String nama, nim;
         int uts1, uts2, uas1, uas2, tugas1, tugas2;
         double nilaiAkhir1, nilaiAkhir2, rata_rata;
         String nilaiHuruf1, nilaiHuruf2;
 
-        // Input data mahasiswa (opsional)
+        // Input Data Mahasiswa
         System.out.println("======== INPUT DATA ========");
         System.out.print("Nama\t: ");
         nama = sc.nextLine();
         System.out.print("NIM\t: ");
         nim = sc.nextLine();
 
-        // Input data nilai mata kuliah 1
+        // Input Data Nilai Mata Kuliah 1: Algoritma dan Pemograman
         System.out.println("\n-------- Mata Kuliah 1: Algoritma dan Pemograman --------");
         System.out.print("Nilai UTS\t: ");
         uts1 = sc.nextInt();
@@ -61,7 +61,7 @@ public class CM1_14 {
         System.out.print("Nilai Tugas\t: ");
         tugas1 = sc.nextInt();
         
-        // Input data nilai mata kuliah 2
+        // Input Data Nilai Mata Kuliah 2: Struktur Data
         System.out.println("\n-------- Mata Kuliah 2: Struktur Data -------------------");
         System.out.print("Nilai UTS\t: ");
         uts2 = sc.nextInt();
@@ -72,14 +72,19 @@ public class CM1_14 {
 
         sc.close();
         
-        // Hitung nilai akhir tiap mata kuliah
-        // Ketentuan: Nilai UTS (30%), Nilai UAS (40%), Nilai Tugas (30%)
+        /* Hitung Nilai Akhir Tiap Mata Kuliah
+         * 
+         * Ketentuan:
+         * - Nilai UTS = 30%
+         * - Nilai UTS = 40%
+         * - Nilai UTS = 30%
+         */
         nilaiAkhir1 = (0.3 * uts1) + (0.4 * uas1) + (0.3 * tugas1);
         nilaiAkhir2 = (0.3 * uts2) + (0.4 * uas2) + (0.3 * tugas2);
         nilaiHuruf1 = hitungNilaiHuruf(nilaiAkhir1);
         nilaiHuruf2 = hitungNilaiHuruf(nilaiAkhir2);
 
-        // Cetak dan format hasil penilaian akademik
+        // Cetak dan Format Hasil Penilaian Akademik
         System.out.println("\n\n============================= HASIL PENILAIAN AKADEMIK =============================");
         System.out.println("Nama\t: " + nama);
         System.out.println("NIM\t: " + nim);
@@ -91,8 +96,8 @@ public class CM1_14 {
         System.out.printf("%s\t%d\t%d\t%d\t%.2f\t\t%s\t\t%s\n", 
             "Struktur Data\t", uts2, uas2, tugas2, nilaiAkhir2, nilaiHuruf2, (nilaiAkhir1 >= 60) ? "LULUS":"TIDAK LULUS");
         
-        // Hitung rata rata nilai semester
-        rata_rata = (nilaiAkhir1+nilaiAkhir2)/2;
+        // Hitung Rata-rata Nilai Semester
+        rata_rata = (nilaiAkhir1 + nilaiAkhir2) / 2;
         System.out.printf("\nRata-rata Nilai Akhir\t: %.2f\n", rata_rata);
         System.out.printf("Status Semester\t\t: %s\n", (rata_rata >= 70) ? "LULUS":"TIDAK LULUS (Rata-rata dibawah 70)");
     }
