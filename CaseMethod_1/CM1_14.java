@@ -44,6 +44,7 @@ public class CM1_14 {
         int uts1, uts2, uas1, uas2, tugas1, tugas2;
         double nilaiAkhir1, nilaiAkhir2, rata_rata;
         String nilaiHuruf1, nilaiHuruf2;
+        boolean status1, status2; 
 
         // Input Data Mahasiswa
         System.out.println("======== INPUT DATA ========");
@@ -83,6 +84,8 @@ public class CM1_14 {
         nilaiAkhir2 = (0.3 * uts2) + (0.4 * uas2) + (0.3 * tugas2);
         nilaiHuruf1 = hitungNilaiHuruf(nilaiAkhir1);
         nilaiHuruf2 = hitungNilaiHuruf(nilaiAkhir2);
+        status1 = (nilaiAkhir1 >= 60);
+        status2 = (nilaiAkhir2 >= 60);
 
         // Cetak dan Format Hasil Penilaian Akademik
         System.out.println("\n\n============================= HASIL PENILAIAN AKADEMIK =============================");
@@ -92,13 +95,19 @@ public class CM1_14 {
         System.out.printf("\n%-25s %-8s %-8s %-8s %-15s %-15s %s\n", "Mata Kuliah", "UTS", "UAS", "TUGAS", "Nilai Akhir", "Nilai Huruf", "Status");
         System.out.println("-------------------------------------------------------------------------------------------");
         System.out.printf("%-25s %-8d %-8d %-8d %-15.2f %-15s %s\n", 
-            "Algoritma Pemograman", uts1, uas1, tugas1, nilaiAkhir1, nilaiHuruf1, (nilaiAkhir1 >= 60) ? "LULUS":"TIDAK LULUS");
+            "Algoritma Pemograman", uts1, uas1, tugas1, nilaiAkhir1, nilaiHuruf1, (status1) ? "LULUS":"TIDAK LULUS");
         System.out.printf("%-25s %-8d %-8d %-8d %-15.2f %-15s %s\n", 
-            "Struktur Data", uts2, uas2, tugas2, nilaiAkhir2, nilaiHuruf2, (nilaiAkhir1 >= 60) ? "LULUS":"TIDAK LULUS");
+            "Struktur Data", uts2, uas2, tugas2, nilaiAkhir2, nilaiHuruf2, (status2) ? "LULUS":"TIDAK LULUS");
         
         // Hitung Rata-rata Nilai Semester
         rata_rata = (nilaiAkhir1 + nilaiAkhir2) / 2;
         System.out.printf("\nRata-rata Nilai Akhir\t: %.2f\n", rata_rata);
-        System.out.printf("Status Semester\t\t: %s\n", (rata_rata >= 70) ? "LULUS":"TIDAK LULUS (Rata-rata dibawah 70)");
+        System.out.printf("Status Semester\t\t: %s\n", (rata_rata >= 70 && status1 && status2) ? "LULUS":"TIDAK LULUS");
+
+        if (!status1 && !status2) {
+            System.out.printf("\nMata kuliah yang tidak lulus: Algoritma Pemograman, Struktur Data\n");
+        } else if (!status1 || !status2) {
+            System.out.printf("\nMata kuliah yang tidak lulus: %s\n", (!status1) ? "Algoritma Pemograman" : "Struktur Data");
+        }
     }
 }
