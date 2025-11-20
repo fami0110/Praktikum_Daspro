@@ -1,3 +1,7 @@
+// Nama  : Masando Fami Ramadhan
+// NIM   : 254107060011
+// Kelas : SIB 1B
+
 import java.util.Scanner;
 
 public class Soal114 {
