@@ -1,29 +1,28 @@
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class RekapPenjualanCafe {
-    static void isiDataPenjualan(String[] namaMenu, int[][] dataPenjualan) {
-        String prefilledNamaMenu[] = {"Kopi", "Teh", "Es Kelapa Muda", "Roti Bakar", "Gorengan"};
-        
-        int prefilledDataPenjualan[][] = {
-            {20, 20, 25, 20, 10, 60, 10},
-            {30, 80, 40, 10, 15, 20, 25},
-            {5, 9, 20, 25, 10, 5, 45},
-            {50, 8, 17, 18, 10, 30, 6},
-            {15, 10, 16, 15, 10, 10, 55},
-        };
-        
+
+    static Scanner sc = new Scanner(System.in);
+
+    static void isiDataPenjualan(String[] namaMenu, int[][] dataPenjualan) {        
+
         for (int i = 0; i < dataPenjualan.length; i++) {
-            namaMenu[i] = prefilledNamaMenu[i];
+
+            sc.nextLine();
+            System.out.print("\nNama Menu Ke-"+(i+1)+": ");
+            namaMenu[i] = sc.nextLine();
 
             for (int j = 0; j < dataPenjualan[i].length; j++) {
-                dataPenjualan[i][j] = prefilledDataPenjualan[i][j];
+                System.out.print("Hari Ke-"+(j+1)+": ");
+                dataPenjualan[i][j] = sc.nextInt();
             }
         }
-
     }
 
     static void tampilDataPenjualan(String[] namaMenu, int[][] dataPenjualan) {
         System.out.println("\n[+] Data penjualan");
+        
         for (int i = 0; i < dataPenjualan.length; i++) {
             System.out.printf("    %-15s: %s\n", namaMenu[i], Arrays.toString(dataPenjualan[i]));
         }
@@ -52,17 +51,26 @@ public class RekapPenjualanCafe {
         return totalPenjualan;
     }
 
-    static void rata2SetiapMenu(String[] namaMenu, int[] totalPenjualan, int hari) {
+    static void rata2SetiapMenu(String[] namaMenu, int[] totalPenjualan, int jmlHariPenjualan) {
         System.out.println("\n[+] Rata-Rata Penjualan Setiap Menu");
+
         for (int i = 0; i < namaMenu.length; i++) {
-            System.out.printf("    %-15s: %.2f\n", namaMenu[i],  (double) totalPenjualan[i]/hari);
+            System.out.printf("    %-15s: %.2f\n", namaMenu[i],  (double) totalPenjualan[i]/jmlHariPenjualan);
         }
     }
 
     public static void main(String[] args) {
-        String namaMenu[] = new String[5];
-        int dataPenjualan[][] = new int[5][7];
-        int totalPenjualan[] = new int[5];
+        int jmlMenu, jmlHariPenjualan;
+        
+        System.out.print("Jumlah Menu           : ");
+        jmlMenu = sc.nextInt();
+
+        System.out.print("Jumlah Hari Penjualan : ");
+        jmlHariPenjualan = sc.nextInt();
+
+        String namaMenu[] = new String[jmlMenu];
+        int dataPenjualan[][] = new int[jmlMenu][jmlHariPenjualan];
+        int totalPenjualan[] = new int[jmlMenu];
 
         isiDataPenjualan(namaMenu, dataPenjualan);
 
@@ -70,6 +78,8 @@ public class RekapPenjualanCafe {
 
         totalPenjualan = cariDataPenjualanTertinggi(namaMenu, dataPenjualan);
 
-        rata2SetiapMenu(namaMenu, totalPenjualan, dataPenjualan[0].length);
+        rata2SetiapMenu(namaMenu, totalPenjualan, jmlHariPenjualan);
+
+        sc.close();
     }
 }
