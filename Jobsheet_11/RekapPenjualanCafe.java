@@ -28,15 +28,16 @@ public class RekapPenjualanCafe {
         }
     }
 
-    static int[] cariDataPenjualanTertinggi(String[] namaMenu, int[][] dataPenjualan) {
-        int idx_menu = 0;
+    static void cariDataPenjualanTertinggi(String[] namaMenu, int[][] dataPenjualan) {
         int[] totalPenjualan = new int[dataPenjualan.length];
-
+        
         for (int i = 0; i < dataPenjualan.length; i++) {
             for (int nilai : dataPenjualan[i]) {
                 totalPenjualan[i] += nilai;
             }
         }
+        
+        int idx_menu = 0;
 
         for (int i = 1; i < totalPenjualan.length; i++) {
             if (totalPenjualan[i] > totalPenjualan[idx_menu]) {
@@ -47,11 +48,18 @@ public class RekapPenjualanCafe {
         System.out.println("\n[+] Menu dengan penjualan tertinggi");
         System.out.println("    Nama  : " + namaMenu[idx_menu]);
         System.out.println("    Total : " + totalPenjualan[idx_menu]);
-
-        return totalPenjualan;
     }
 
-    static void rata2SetiapMenu(String[] namaMenu, int[] totalPenjualan, int jmlHariPenjualan) {
+    static void rata2SetiapMenu(String[] namaMenu, int[][] dataPenjualan) {
+        int[] totalPenjualan = new int[dataPenjualan.length];
+        
+        for (int i = 0; i < dataPenjualan.length; i++) {
+            for (int nilai : dataPenjualan[i]) {
+                totalPenjualan[i] += nilai;
+            }
+        }
+        
+        int jmlHariPenjualan = dataPenjualan[0].length;
         System.out.println("\n[+] Rata-Rata Penjualan Setiap Menu");
 
         for (int i = 0; i < namaMenu.length; i++) {
@@ -70,15 +78,14 @@ public class RekapPenjualanCafe {
 
         String namaMenu[] = new String[jmlMenu];
         int dataPenjualan[][] = new int[jmlMenu][jmlHariPenjualan];
-        int totalPenjualan[] = new int[jmlMenu];
 
         isiDataPenjualan(namaMenu, dataPenjualan);
 
         tampilDataPenjualan(namaMenu, dataPenjualan);
 
-        totalPenjualan = cariDataPenjualanTertinggi(namaMenu, dataPenjualan);
+        cariDataPenjualanTertinggi(namaMenu, dataPenjualan);
 
-        rata2SetiapMenu(namaMenu, totalPenjualan, jmlHariPenjualan);
+        rata2SetiapMenu(namaMenu, dataPenjualan);
 
         sc.close();
     }
