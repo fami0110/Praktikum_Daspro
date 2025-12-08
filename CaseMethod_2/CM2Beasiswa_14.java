@@ -5,6 +5,7 @@ import java.util.Scanner;
  * Nama  : Masando Fami Ramadhan
  * Kelas : SIB 1B
  * No    : 14
+ * Link  : https://github.com/fami0110/Praktikum_Daspro/tree/main/CaseMethod_2
  * 
  */
 
