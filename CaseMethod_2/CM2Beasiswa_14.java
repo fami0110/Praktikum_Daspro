@@ -59,6 +59,7 @@ public class CM2Beasiswa_14 {
 
         System.out.print("\nPenghasilan Ortu (Maksimal Rp 2.000.000):\n> ");
         penghasilanOrtu = sc.nextInt();
+        
 
         // Validasi data input
         String[] validBeasiswa = {"Reguler", "Unggulan", "Riset"};
@@ -71,9 +72,13 @@ public class CM2Beasiswa_14 {
             }
         }
 
-        boolean penghasilanValid = penghasilanOrtu >= 0 && penghasilanOrtu <= 2_000_000;
+        boolean penghasilanValid = (penghasilanOrtu >= 0 && penghasilanOrtu <= 2_000_000);
+        
+        boolean kuotaTersedia = (index < nama_mhs.length);
 
-        if ((pilihanBeasiswa != -1) && penghasilanValid) {
+        boolean ipkValid = (ipk <= 4.0 && ipk >= 0.0);
+
+        if ((pilihanBeasiswa != -1) && penghasilanValid && kuotaTersedia && ipkValid) {
             nama_mhs[index] = nama;
             nim_mhs[index] = nim;
             ipk_mhs[index] = ipk;
@@ -86,7 +91,11 @@ public class CM2Beasiswa_14 {
         } else {
             System.out.print("\nPendaftaran dibatalkan, karena ");
 
-            if (!(pilihanBeasiswa != -1) && !penghasilanValid) {
+            if (!kuotaTersedia) {
+                System.out.print("kuota pendaftaran telah penuh!");
+            } else if (!ipkValid) {
+                System.out.print("IPK tidak valid!");
+            } else if (!(pilihanBeasiswa != -1) && !penghasilanValid) {
                 System.out.print("jenis beasiswa dan penghasilan tidak valid!");
             } else if (!(pilihanBeasiswa != -1)) {
                 System.out.print("jenis beasiswa tidak valid!");
@@ -138,7 +147,7 @@ public class CM2Beasiswa_14 {
         String[] jenisBeasiswa_filtered = new String[jumlahPendaftar];
         int[] penghasilanOrtu_filtered = new int[jumlahPendaftar];
         
-        System.out.print("\nMasukkan jenis beasiswa: ");
+        System.out.print("Masukkan jenis beasiswa: ");
         String filter = sc.nextLine();
         
         int jumlah = 0;
@@ -191,8 +200,12 @@ public class CM2Beasiswa_14 {
         System.out.println("├────────────────┼─────────────────┼───────────────┤");
 
         for (int i = 0; i < rekapitulasi.length; i++) {
-            System.out.printf("│ %-14s │ %-15.0f │ %-13.2f │\n", 
-                validBeasiswa[i], rekapitulasi[i][0], (rekapitulasi[i][1] / rekapitulasi[i][0])
+            System.out.printf("│ %-14s │ %-15s │ %-13s │\n", 
+                validBeasiswa[i], 
+                (rekapitulasi[i][0] == 0) ? 
+                    "(Tidak Ada)" : String.format("%.0f", rekapitulasi[i][0]), 
+                (rekapitulasi[i][0] == 0) ? 
+                    "-" : String.format("%.2f", (rekapitulasi[i][1] / rekapitulasi[i][0]))
             );
         }
 
@@ -200,11 +213,11 @@ public class CM2Beasiswa_14 {
     }
 
     public static void main(String[] args) {
-        System.out.print("Masukkan jumlah pendaftar: ");
+        System.out.print("Masukkan jumlah kuota pendaftar: ");
         int jumlahPendaftar = sc.nextInt();
         
         sc.nextLine();
-        System.out.println();;
+        System.out.println();
 
         String[] nama_mhs = new String[jumlahPendaftar];
         String[] nim_mhs = new String[jumlahPendaftar];

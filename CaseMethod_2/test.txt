@@ -1,4 +1,4 @@
-20
+5
 1
 Masando Fami Ramadhan
 1873718
@@ -41,6 +41,12 @@ Ucum
 3.7
 Risetss
 2800000
+1
+Ucum
+27642276
+12.0
+Riset
+2000000
 2
 3
 Reguler
